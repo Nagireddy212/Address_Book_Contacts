@@ -25,9 +25,9 @@ public class AddingNewAddress {
         String email = scan.next();
         AddressBook AddressBook = new AddressBook(first, last, address, city, state,  email,mobileNo, zip);
         ContactsBook.add(AddressBook);
-        System.out.println("Contact added Successfully");
+        System.out.println("Contact Details added Successfully");
     }
-    public void PersonData()
+    public void PersonDetails()
     {
         System.out.println("\n Address Book details of Person: ");
         for (AddressBook person : ContactsBook)
@@ -35,10 +35,9 @@ public class AddingNewAddress {
             System.out.println(person.toString());
         }
     }
-    public void EditPersonDetails()
-    {
+    public void EditPersonData() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("\n Enter FirstName to edit details:");
+        System.out.println("\n Enter First name to edit details:");
 
         String name = scan.next();
 
@@ -52,10 +51,10 @@ public class AddingNewAddress {
                         + "2) Email\n"
                         + "3) Address\n"
                         + "4) Exit");
-                int numb = scan.nextInt();
+                int number = scan.nextInt();
 
-                switch (numb) {
-                    case 1 : {
+                switch (number) {
+                    case 1: {
                         System.out.println("Enter new Mobile number:");
                         long mobileNo = scan.nextLong();
 
@@ -63,7 +62,7 @@ public class AddingNewAddress {
                         System.out.println("Updated Mobile number: \n");
                         break;
                     }
-                    case 2 : {
+                    case 2: {
                         System.out.println("Enter new Email:");
                         String Email = scan.nextLine();
 
@@ -71,7 +70,7 @@ public class AddingNewAddress {
                         System.out.println("Updated Email is: \n");
                         break;
                     }
-                    case 3 : {
+                    case 3: {
                         System.out.println("Enter your city");
                         String City = scan.nextLine();
 
@@ -87,10 +86,10 @@ public class AddingNewAddress {
                         System.out.println("Updated Address is: \n");
                         break;
                     }
-                    default : System.out.println("Please enter Correct Number");
+                    default:
+                        System.out.println("Please Select correct option");
                 }
-            }
-            else
+            } else
                 System.out.println("Person do not have details Registered");
         }
     }
@@ -101,28 +100,51 @@ public class AddingNewAddress {
         while(N==0) {
             Scanner scan = new Scanner(System.in);
             System.out.println("1.Add Contact Details");
-            System.out.println("2.Edit Contact Details");
-            System.out.println("3.Display Contact Details");
-            System.out.println("4.Exit");
-            System.out.println("Please Select any one option:");
+            System.out.println("2.Display Contact Details");
+            System.out.println("3.Edit Contact Details");
+            System.out.println("4.Delete Contact");
+            System.out.println("5.Exit");
+            System.out.println("Select any one option:");
             int choice = scan.nextInt();
-
             switch (choice) {
                 case 1:
                     address.AddContacts();
                     ;
                     break;
                 case 2:
-                    address.PersonData();
+                    address.PersonDetails();
                     break;
                 case 3:
-                    address.EditPersonDetails();
+                    address.EditPersonData();
                     break;
                 case 4:
+                    address.DeletePersonFirstname();
+                    break;
+                case 5:
                     System.out.println("Exit");
                     N = 1;
                     break;
             }
+        }
+    }
+    public void DeletePersonFirstname()
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter person first name: ");
+        String name = scan.nextLine();
+
+        for (int j = 0; j < ContactsBook.size(); j++)
+        {
+            String personName = ContactsBook.get(j).LastName;
+
+            if (name.equals(personName))
+            {
+                ContactsBook.remove(j);
+                System.out.println("Person Firstname is deleted");
+                break;
+            }
+            else
+                System.out.println("Please Enter Correct Name");
         }
     }
 }
