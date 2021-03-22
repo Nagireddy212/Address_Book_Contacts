@@ -82,7 +82,7 @@ public class AddressBook {
 
     public String toString() {
         return "ADDRESSBOOK [FIRSTNAME=" + FirstName + ", LASTNAME=" + LastName + ", CITY=" + City
-                + ", STATE=" + State + ", PINCODE=" + Zip + ", MOBILENO=" + MobileNo + ", EMAIL =" + Email + "]" + "\n";
+                + ", STATE=" + State + ", PINCODE=" + Zip + ", MOBILENO=" + MobileNo + ", EMAIL=" + Email + "]" + "\n";
     }
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book");
