@@ -10,6 +10,8 @@ public class AddingNewAddress {
     {
         System.out.println("Enter First Name");
         String first = scan.nextLine();
+
+        checkDuplicateName(first);
         System.out.println("Enter Last Name");
         String last = scan.nextLine();
         System.out.println("Enter Address");
@@ -149,6 +151,24 @@ public class AddingNewAddress {
 
         for (MultipleAddressBook addressBookList : addressBookList) {
             System.out.println(addressBookList);
+        }
+    }
+
+    public void checkDuplicateName(String first)
+    {
+        for (int a = 0; a < ContactsBook.size(); a++)
+        {
+            String contactName = ContactsBook.get(a).FirstName;
+
+            if (first.equals(contactName))
+            {
+                System.out.println("Person Name is already Exist");
+            }
+            else
+            {
+                System.out.println("Add Person");
+                break;
+            }
         }
     }
     public void DeletePersonFirstname()
