@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class AddingNewAddress {
     public ArrayList<AddressBook> ContactsBook = new ArrayList<>();
+    ArrayList<MultipleAddressBook> addressBookList = new ArrayList<>();
+    Scanner scan = new Scanner(System.in);
     public void AddContacts()
     {
-        Scanner scan = new Scanner(System.in);
         System.out.println("Enter First Name");
         String first = scan.nextLine();
         System.out.println("Enter Last Name");
@@ -36,7 +37,6 @@ public class AddingNewAddress {
         }
     }
     public void EditPersonData() {
-        Scanner scan = new Scanner(System.in);
         System.out.println("\n Enter First name to edit details:");
 
         String name = scan.next();
@@ -98,18 +98,19 @@ public class AddingNewAddress {
         AddingNewAddress address = new AddingNewAddress();
         int N=0;
         while(N==0) {
-            Scanner scan = new Scanner(System.in);
             System.out.println("1.Add Contact Details");
             System.out.println("2.Display Contact Details");
             System.out.println("3.Edit Contact Details");
             System.out.println("4.Delete Contact");
-            System.out.println("5.Exit");
+            System.out.println("5.Add New Address Book Details");
+            System.out.println("6.Display New Address Book Details");
+            System.out.println("7.Exit");
             System.out.println("Select any one option:");
+            Scanner scan = new Scanner(System.in);
             int choice = scan.nextInt();
             switch (choice) {
                 case 1:
                     address.AddContacts();
-                    ;
                     break;
                 case 2:
                     address.PersonDetails();
@@ -121,10 +122,33 @@ public class AddingNewAddress {
                     address.DeletePersonFirstname();
                     break;
                 case 5:
+                    address.NewAddressBook();
+                    break;
+                case 6:
+                    address.displayAddressBook();
+                    break;
+                case 7:
                     System.out.println("Exit");
                     N = 1;
                     break;
             }
+        }
+    }
+    public void NewAddressBook()
+    {
+        System.out.println("Enter AddressBook Name");
+        String userInputBookName = scan.next();
+        MultipleAddressBook Addressbook = new MultipleAddressBook(userInputBookName);
+        addressBookList.add(Addressbook);
+        System.out.println("New Address Book Name is added to list");
+    }
+    public void displayAddressBook()
+    {
+
+        System.out.println("Existing AddressBook Names are : ");
+
+        for (MultipleAddressBook addressBookList : addressBookList) {
+            System.out.println(addressBookList);
         }
     }
     public void DeletePersonFirstname()
