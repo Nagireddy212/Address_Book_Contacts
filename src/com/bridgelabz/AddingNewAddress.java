@@ -1,6 +1,6 @@
 package com.bridgelabz;
 
-import java.util.stream.Collectors;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class AddingNewAddress {
@@ -10,27 +10,27 @@ public class AddingNewAddress {
     public void AddContacts()
     {
         System.out.println("Enter First Name");
-        String first = scan.nextLine();
+        String first = scan.next();
 
         checkDuplicateName(first);
 
         System.out.println("Enter Last Name");
-        String last = scan.nextLine();
+        String last = scan.next();
 
         System.out.println("Enter Address");
-        String address = scan.nextLine();
+        String address = scan.next();
 
         System.out.println("Enter City");
-        String city = scan.nextLine();
+        String city = scan.next();
 
         System.out.println("Enter State");
-        String state = scan.nextLine();
+        String state = scan.next();
 
         System.out.println("Enter Zip Code");
-        int zip = Integer.parseInt(scan.nextLine());
+        int zip = Integer.parseInt(scan.next());
 
         System.out.println("Enter Phone Number");
-        long mobileNo = Long.parseLong(scan.nextLine());
+        long mobileNo = Long.parseLong(scan.next());
 
         System.out.println("Enter E-mail");
         String email = scan.next();
@@ -62,12 +62,12 @@ public class AddingNewAddress {
                         + "2) Email\n"
                         + "3) Address\n"
                         + "4) Exit");
-                int number = Integer.parseInt(scan.nextLine());
+                int numbers = Integer.parseInt(scan.next());
 
-                switch (number) {
+                switch (numbers) {
                     case 1: {
                         System.out.println("Enter new Mobile number:");
-                        long mobileNo = Long.parseLong(scan.nextLine());
+                        long mobileNo = Long.parseLong(scan.next());
 
                         person.setMobileNo(mobileNo);
                         System.out.println("Updated Mobile number: \n");
@@ -75,7 +75,7 @@ public class AddingNewAddress {
                     }
                     case 2: {
                         System.out.println("Enter new Email:");
-                        String Email = scan.nextLine();
+                        String Email = scan.next();
 
                         person.setEmail(Email);
                         System.out.println("Updated Email is: \n");
@@ -83,16 +83,15 @@ public class AddingNewAddress {
                     }
                     case 3: {
                         System.out.println("Enter your city");
-                        String City = scan.nextLine();
+                        String City = scan.next();
+                        person.setCity(City);
 
                         System.out.println("Enter your state");
-                        String State = scan.nextLine();
+                        String State = scan.next();
+                        person.setState(State);
 
                         System.out.println("Enter your zip code");
-                        int Zip = Integer.parseInt(scan.nextLine());
-
-                        person.setCity(City);
-                        person.setState(State);
+                        int Zip = Integer.parseInt(scan.next());
                         person.setZip(Zip);
                         System.out.println("Updated Address is: \n");
                         break;
@@ -121,7 +120,7 @@ public class AddingNewAddress {
             System.out.println("9.Exit");
             System.out.println("Select any one option:");
             Scanner scan = new Scanner(System.in);
-            int choice = Integer.parseInt(scan.nextLine());
+            int choice = Integer.parseInt(scan.next());
             switch (choice) {
                 case 1:
                     address.AddContacts();
@@ -173,17 +172,22 @@ public class AddingNewAddress {
     }
     public void SearchCity() {
         System.out.println("Enter City name to search Person by city name");
-        String userCity = scan.nextLine();
+        String userCity = scan.next();
+        Dictionary DictCity = new Hashtable();
         ContactsBook.stream().filter(map -> map.getCity().contains(userCity)).forEach(ContactsBook ->
-                System.out.println(ContactsBook));
+                System.out.println("Name of the City: " + userCity));
+        for (Enumeration i = DictCity.keys(); i.hasMoreElements();)
+        {
+            System.out.println("Name : " + i.nextElement());
+        }
     }
     public void SearchState()
     {
         System.out.println("Enter the state name to search Person by state name");
-        String userState = scan.nextLine();
-
+        String userState = scan.next();
+        Dictionary DictState = new Hashtable();
         ContactsBook.stream().filter(map -> map.getState().contains(userState)).forEach(ContactsBook ->
-                System.out.println(ContactsBook));
+                System.out.println("Name of the State: " + userState));
     }
     public void checkDuplicateName(String first)
     {
