@@ -3,6 +3,8 @@ package com.bridgelabz;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
 public class AddingNewAddress {
     public ArrayList<AddressBook> ContactsBook = new ArrayList<>();
     ArrayList<MultipleAddressBook> addressBookList = new ArrayList<>();
@@ -147,6 +149,12 @@ public class AddingNewAddress {
                     address.SearchState();
                     break;
                 case 9:
+                    address.CountCity();
+                    break;
+                case 10:
+                    address.CountState();
+                    break;
+                case 11:
                     System.out.println("Exit");
                     N = 1;
                     break;
@@ -205,6 +213,15 @@ public class AddingNewAddress {
                 break;
             }
         }
+    }
+    public void CountCity(){
+        System.out.println(ContactsBook.stream().collect(Collectors.groupingBy((AddressBook B) -> B.getCity())));
+        System.out.println((ContactsBook.stream().collect(Collectors.groupingBy((AddressBook B) -> B.getCity(),Collectors.counting()))));
+    }
+
+    public void CountState(){
+        System.out.println(ContactsBook.stream().collect(Collectors.groupingBy((AddressBook B) -> B.getState())));
+        System.out.println((ContactsBook.stream().collect(Collectors.groupingBy((AddressBook B) -> B.getState(),Collectors.counting()))));
     }
     public void DeletePersonFirstname()
     {
