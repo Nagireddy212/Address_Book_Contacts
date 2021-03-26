@@ -119,7 +119,10 @@ public class AddingNewAddress {
             System.out.println("6.Display New Address Book Details");
             System.out.println("7.Search by Existing City");
             System.out.println("8.Search by Existing State");
-            System.out.println("9.Exit");
+            System.out.println("9.Count by city");
+            System.out.println("10.Count by state");
+            System.out.println("11.sorting names in order");
+            System.out.println("12.Exit");
             System.out.println("Select any one option:");
             Scanner scan = new Scanner(System.in);
             int choice = Integer.parseInt(scan.next());
@@ -155,6 +158,9 @@ public class AddingNewAddress {
                     address.CountState();
                     break;
                 case 11:
+                    address.sortPerson();
+                    break;
+                case 12:
                     System.out.println("Exit");
                     N = 1;
                     break;
@@ -196,6 +202,10 @@ public class AddingNewAddress {
         Dictionary DictState = new Hashtable();
         ContactsBook.stream().filter(map -> map.getState().contains(userState)).forEach(ContactsBook ->
                 System.out.println("Name of the State: " + userState));
+        for (Enumeration i = DictState.keys(); i.hasMoreElements();)
+        {
+            System.out.println("Name : " + i.nextElement());
+        }
     }
     public void checkDuplicateName(String first)
     {
@@ -223,6 +233,14 @@ public class AddingNewAddress {
         System.out.println(ContactsBook.stream().collect(Collectors.groupingBy((AddressBook B) -> B.getState())));
         System.out.println((ContactsBook.stream().collect(Collectors.groupingBy((AddressBook B) -> B.getState(),Collectors.counting()))));
     }
+    public void sortPerson()
+    {
+        System.out.println("Names are sorted alphabetical order");
+        ContactsBook.stream().sorted(Comparator.comparing(contactInfo ->
+                contactInfo.getFirstName())).forEach(contactInfo ->
+                System.out.println(contactInfo));
+    }
+
     public void DeletePersonFirstname()
     {
         Scanner scan = new Scanner(System.in);
