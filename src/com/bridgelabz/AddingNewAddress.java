@@ -161,6 +161,12 @@ public class AddingNewAddress {
                     address.sortPerson();
                     break;
                 case 12:
+                    address.sortCity();
+                    break;
+                case 13:
+                    address.sortPin();
+                    break;
+                case 14:
                     System.out.println("Exit");
                     N = 1;
                     break;
@@ -240,6 +246,22 @@ public class AddingNewAddress {
                 contactInfo.getFirstName())).forEach(contactInfo ->
                 System.out.println(contactInfo));
     }
+    public void sortCity(){
+        System.out.println("sorting the persons by using city names");
+        Comparator<AddressBook> compareFirstName=Comparator.comparing(AddressBook::getFirstName);
+        Comparator<AddressBook> compareCity=Comparator.comparing(AddressBook::getCity);
+        Comparator<AddressBook> compareBoth =compareFirstName.thenComparing(compareCity);
+        ContactsBook.stream().sorted( compareBoth ).forEach(contactInfo -> System.out.println(contactInfo));
+    }
+    public void sortPin(){
+
+        System.out.println("sorting the persons by using postal codes ");
+        Comparator<AddressBook> compareFirstName=Comparator.comparing(AddressBook::getFirstName);
+        Comparator<AddressBook> comparePostal=Comparator.comparing(AddressBook::getZip);
+        Comparator<AddressBook> compareBoth =compareFirstName.thenComparing(comparePostal);
+        ContactsBook.stream().sorted( compareBoth ).forEach(contactInfo -> System.out.println(contactInfo));
+    }
+
 
     public void DeletePersonFirstname()
     {
